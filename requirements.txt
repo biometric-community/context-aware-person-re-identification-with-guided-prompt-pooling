@@ -1,0 +1,7 @@
+torch>=2.0
+torchvision>=0.15
+open-clip-torch>=2.24
+PyYAML>=6.0
+Pillow>=9.0
+matplotlib>=3.7
+numpy>=1.23

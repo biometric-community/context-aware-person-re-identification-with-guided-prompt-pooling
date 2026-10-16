@@ -1,0 +1,44 @@
+paper:
+  slug: context-aware-person-re-identification-with-guided-prompt-pooling
+  title: "Context-Aware Person Re-Identification With Guided Prompt Pooling"
+  doi: "10.1109/TBIOM.2026.3654624"
+  method: CapReID
+source_code:
+  url: https://github.com/Nirmala891/Context-aware-prompt-based-person-re-identification
+  commit: null
+data:
+  root: ../../datasets/market1501
+  # open_clip ViT-B-16 (openai) native 224; paper tables use 256x128 — see DEVIATIONS.md
+  height: 224
+  width: 224
+  mean: [0.48145466, 0.4578275, 0.40821073]
+  std: [0.26862954, 0.26130258, 0.27577711]
+  random_erasing: true
+  num_workers: 4
+model:
+  name: capreid
+  backbone: ViT-B-16
+  pretrained: openai
+  n_pool: 4
+  alpha: 0.45
+  ot_eps: 0.05
+  ot_iters: 50
+train:
+  batch_size: 64
+  lr: 0.0001
+  weight_decay: 0.01
+  temperature: 0.07
+  margin: 0.3
+  stage1_epochs: 120
+  stage2_epochs: 60
+  log_every: 50
+  eval_every: 10
+  num_workers: 4
+eval:
+  batch_size: 64
+  ranks: [1, 5, 10]
+output:
+  dir: outputs
+  checkpoints: outputs/checkpoints
+  logs: outputs/logs
+  figures: outputs/figures

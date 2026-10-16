@@ -1,0 +1,41 @@
+paper:
+  slug: context-aware-person-re-identification-with-guided-prompt-pooling
+  title: "Context-Aware Person Re-Identification With Guided Prompt Pooling"
+  doi: "10.1109/TBIOM.2026.3654624"
+  method: CapReID
+data:
+  root: ../../datasets/market1501
+  height: 224
+  width: 224
+  mean: [0.48145466, 0.4578275, 0.40821073]
+  std: [0.26862954, 0.26130258, 0.27577711]
+  random_erasing: true
+  num_workers: 2
+  max_train_samples: 512
+  max_eval_samples: 256
+model:
+  name: capreid
+  backbone: ViT-B-16
+  pretrained: openai
+  n_pool: 4
+  alpha: 0.45
+  ot_eps: 0.05
+  ot_iters: 20
+train:
+  batch_size: 32
+  lr: 0.0001
+  weight_decay: 0.01
+  temperature: 0.07
+  margin: 0.3
+  stage1_epochs: 1
+  stage2_epochs: 1
+  log_every: 5
+  eval_every: 1
+eval:
+  batch_size: 32
+  ranks: [1, 5, 10]
+output:
+  dir: outputs
+  checkpoints: outputs/checkpoints
+  logs: outputs/logs
+  figures: outputs/figures

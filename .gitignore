@@ -1,0 +1,10 @@
+outputs/
+__pycache__/
+*.pyc
+.venv/
+*.egg-info/
+.pytest_cache/
+upstream/
+*.pt
+*.pth
+.DS_Store
